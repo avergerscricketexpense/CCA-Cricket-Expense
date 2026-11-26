@@ -1,21 +1,63 @@
-<br>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CCA - Spring 2027 Payment Summary</title>
-  <style>
-    body { margin: 0; background: #f4f6f9; font-family: Arial, sans-serif; }
-    main { max-width: 760px; margin: 24px auto; padding: 0 16px; }
-    h1 { color: #1f3a5f; font-size: 1.5rem; }
-    iframe { display: block; max-width: 100%; border: 0; background: #fff; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCA - Spring 2027 Payment Summary</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        background: #f4f6f9;
+        font-family: Arial, sans-serif;
+    }
+
+    main {
+        max-width: 760px;
+        margin: 24px auto;
+        padding: 0 16px;
+    }
+
+    h1 {
+        color: #1f3a5f;
+        font-size: 1.5rem;
+    }
+
+    iframe {
+        display: block;
+        width: 100%;
+        border: 0;
+        background: #fff;
+
+        /* Mobile-friendly height */
+        min-height: calc(100dvh - 140px);
+
+        /* Fallback */
+        min-height: calc(100vh - 140px);
+    }
+
+    @media (max-width: 768px) {
+        iframe {
+            min-height: calc(100dvh - 100px);
+        }
+    }
+</style>
 </head>
+
 <body>
-  <main>
-    <h1>CCA - Spring 2027 Payment Summary</h1>
-    <iframe width="1200" height="738" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/0506b12197c6182a/IQSpM73Irc_TSr3rpO5FhscRAfZ6LuOMPXJBeUcADokBjHE?em=2&wdAllowInteractivity=False&ActiveCell='CCA%20-%20Spring%202027'!A2&Item='CCA%20-%20Spring%202027'!A1%3AI33&wdHideGridlines=True&wdInConfigurator=True&wdInConfigurator=True"></iframe>
-  </main>
+    <main>
+        <h1>CCA - Spring 2027 Payment Summary</h1>
+
+        <iframe
+            src="https://1drv.ms/x/c/0506b12197c6182a/IQSpM73Irc_TSr3rpO5FhscRAfZ6LuOMPXJBeUcADokBjHE?em=2&wdAllowInteractivity=False&ActiveCell='CCA%20-%20Spring%202027'!A2&Item='CCA%20-%20Spring%202027'!A1%3AI33&wdHideGridlines=True&wdInConfigurator=True&wdInConfigurator=True"
+            title="CCA Payment Summary">
+        </iframe>
+    </main>
 </body>
 </html>
