@@ -1,94 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CCA - Spring 2027 Payment Summary</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCA - Spring 2027 Payment Summary</title>
 
-<style>
+  <style>
     body {
-        margin: 0;
-        background: #f4f6f9;
-        font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f9;
+      font-family: Arial, sans-serif;
     }
 
     main {
-        max-width: 1200px;
-        margin: 24px auto;
-        padding: 0 16px;
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px;
     }
 
     h1 {
-        color: #1f3a5f;
-        font-size: 1.5rem;
-        margin-bottom: 16px;
+      color: #1f3a5f;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
     }
 
     .excel-wrapper {
-        width: 100%;
-        overflow: hidden;
-        background: #fff;
-        border-radius: 8px;
+      width: 100%;
+      overflow: hidden;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
     .excel-wrapper iframe {
-        width: 1600px;
-        height: 738px;
-        border: 0;
-        display: block;
-        transform-origin: top left;
-        transform: scale(0.85);
+      width: 1600px; /* Base width used for scaling */
+      height: 738px;
+      border: 0;
+      display: block;
+      transform-origin: top left;
     }
-
-    /* Tablet */
-    @media (max-width: 1024px) {
-        .excel-wrapper {
-            height: 540px;
-        }
-
-        .excel-wrapper iframe {
-            transform: scale(0.65);
-        }
-    }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-        .excel-wrapper {
-            height: 430px;
-        }
-
-        .excel-wrapper iframe {
-            transform: scale(0.50);
-        }
-    }
-
-    /* Small phones */
-    @media (max-width: 480px) {
-        .excel-wrapper {
-            height: 340px;
-        }
-
-        .excel-wrapper iframe {
-            transform: scale(0.38);
-        }
-    }
-</style>
+  </style>
 </head>
 
 <body>
-<main>
+  <main>
+    <h1>CCA - Spring 2027 Payment Summary</h1>
 
-<h1>CCA - Spring 2027 Payment Summary</h1>
-
-<div class="excel-wrapper">
-    <iframe
+    <div class="excel-wrapper">
+      <iframe
         src="https://1drv.ms/x/c/0506b12197c6182a/IQSpM73Irc_TSr3rpO5FhscRAfZ6LuOMPXJBeUcADokBjHE?em=2&wdAllowInteractivity=False&ActiveCell='CCA%20-%20Spring%202027'!O2&Item='CCA%20-%20Spring%202027'!A1%3AS32&wdHideGridlines=True&wdInConfigurator=True"
         title="CCA Spring 2027 Payment Summary"
-        frameborder="0"
         scrolling="no">
-    </iframe>
-</div>
+      </iframe>
+    </div>
+  </main>
 
-</main>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.querySelector('.excel-wrapper');
+      const iframe = wrapper.querySelector('iframe');
+
+      const BASE_WIDTH = 1600;
+      const BASE_HEIGHT = 738;
+
+      function resizeExcel() {
+        const availableWidth = wrapper.clientWidth;
+
+        // Scale down to fit container, but never scale above 100%
+        const scale = Math.min(availableWidth / BASE_WIDTH, 1);
+
+        iframe.style.transform = `scale(${scale})`;
+        wrapper.style.height = `${BASE_HEIGHT * scale}px`;
+      }
+
+      resizeExcel();
+
+      window.addEventListener('resize', resizeExcel);
+
+      if ('ResizeObserver' in window) {
+        const observer = new ResizeObserver(resizeExcel);
+        observer.observe(wrapper);
+      }
+    });
+  </script>
 </body>
 </html>
