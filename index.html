@@ -1,173 +1,21 @@
+<br>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CCA - Spring 2027 Payment Summary</title>
-
-<style>
-    body {
-        margin: 0;
-        background: #f4f6f9;
-        font-family: Arial, sans-serif;
-    }
-
-    main {
-        max-width: 1200px;
-        margin: 24px auto;
-        padding: 0 16px;
-    }
-
-    h1 {
-        color: #1f3a5f;
-        font-size: 1.5rem;
-        margin-bottom: 16px;
-    }
-
-    .zoom-controls {
-        display: none;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 12px;
-    }
-
-    .zoom-controls button {
-        width: 44px;
-        height: 44px;
-        border: none;
-        border-radius: 8px;
-        background: #1f3a5f;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-    }
-
-    .zoom-controls button:hover {
-        background: #2a4d7a;
-    }
-
-    #zoomLevel {
-        min-width: 60px;
-        text-align: center;
-        font-weight: bold;
-        color: #1f3a5f;
-    }
-
-    .excel-wrapper {
-        width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,.08);
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .excel-wrapper iframe {
-        width: 1600px;
-        height: 738px;
-        border: 0;
-        display: block;
-        transform-origin: top left;
-    }
-
-    @media (max-width: 768px) {
-        .zoom-controls {
-            display: flex;
-        }
-    }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCA - Spring 2027 Payment Summary</title>
+  <style>
+    body { margin: 0; background: #f4f6f9; font-family: Arial, sans-serif; }
+    main { max-width: 760px; margin: 24px auto; padding: 0 16px; }
+    h1 { color: #1f3a5f; font-size: 1.5rem; }
+    iframe { display: block; max-width: 100%; border: 0; background: #fff; }
+  </style>
 </head>
 <body>
-
-<main>
-
-<h1>CCA - Spring 2027 Payment Summary</h1>
-
-<div class="zoom-controls">
-    <button type="button" id="zoomOut">−</button>
-    <span id="zoomLevel">125%</span>
-    <button type="button" id="zoomIn">+</button>
-</div>
-
-<div class="excel-wrapper">
-    <iframe
-        src="https://1drv.ms/x/c/0506b12197c6182a/IQSpM73Irc_TSr3rpO5FhscRAfZ6LuOMPXJBeUcADokBjHE?em=2&wdAllowInteractivity=False&ActiveCell='CCA%20-%20Spring%202027'!O2&Item='CCA%20-%20Spring%202027'!A1%3AS32&wdHideGridlines=True&wdInConfigurator=True"
-        title="CCA Spring 2027 Payment Summary"
-        scrolling="no">
-    </iframe>
-</div>
-
-</main>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    const wrapper = document.querySelector('.excel-wrapper');
-    const iframe = wrapper.querySelector('iframe');
-
-    const zoomInBtn = document.getElementById('zoomIn');
-    const zoomOutBtn = document.getElementById('zoomOut');
-    const zoomLabel = document.getElementById('zoomLevel');
-
-    const BASE_WIDTH = 1600;
-    const BASE_HEIGHT = 738;
-
-    // Initial mobile zoom
-    let userZoom = 1.25;
-
-    function resizeExcel() {
-
-        const isMobile = window.innerWidth <= 768;
-
-        if (isMobile) {
-
-            const fitScale = wrapper.clientWidth / BASE_WIDTH;
-            const finalScale = fitScale * userZoom;
-
-            iframe.style.width = BASE_WIDTH + 'px';
-            iframe.style.transform = `scale(${finalScale})`;
-
-            wrapper.style.height =
-                (BASE_HEIGHT * finalScale) + 'px';
-
-            zoomLabel.textContent =
-                Math.round(userZoom * 100) + '%';
-
-        } else {
-
-            const desktopScale =
-                Math.min(wrapper.clientWidth / BASE_WIDTH, 1);
-
-            iframe.style.transform =
-                `scale(${desktopScale})`;
-
-            wrapper.style.height =
-                (BASE_HEIGHT * desktopScale) + 'px';
-        }
-    }
-
-    zoomInBtn.addEventListener('click', () => {
-        userZoom = Math.min(userZoom + 0.25, 3);
-        resizeExcel();
-    });
-
-    zoomOutBtn.addEventListener('click', () => {
-        userZoom = Math.max(userZoom - 0.25, 0.5);
-        resizeExcel();
-    });
-
-    window.addEventListener('resize', resizeExcel);
-
-    if ('ResizeObserver' in window) {
-        new ResizeObserver(resizeExcel)
-            .observe(wrapper);
-    }
-
-    resizeExcel();
-});
-</script>
-
+  <main>
+    <h1>CCA - Spring 2027 Payment Summary</h1>
+    <iframe width="700" height="738" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/0506b12197c6182a/IQSpM73Irc_TSr3rpO5FhscRAfZ6LuOMPXJBeUcADokBjHE?em=2&wdAllowInteractivity=False&ActiveCell='CCA%20-%20Spring%202027'!O2&Item='CCA%20-%20Spring%202027'!A1%3AS32&wdHideGridlines=True&wdInConfigurator=True&wdInConfigurator=True"></iframe>
+  </main>
 </body>
 </html>
